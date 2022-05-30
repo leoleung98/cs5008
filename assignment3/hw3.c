@@ -137,7 +137,7 @@ int dequeue(queue_t* q_p) {
 
     // ***** INSERT YOUR CODE HERE *****
     q_p->head_p=n_p->left_p;
-    n_p->right_p=NULL;
+    q_p->head_p->right_p=NULL;
     
   }
   
