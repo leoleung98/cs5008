@@ -42,11 +42,30 @@ int peek()
 void enqueue(int data)
 {
  //insert your code here
+ if(isfull()==1){
+     printf("Queue is full, %d can't be added into the queue\n",data);
+     return ;
+ }
+ else{
+     arr[++rear]=data;
+ }
 }
 /*----Function to remove the elements from the queue----*/
 int dequeue()
 {   
     //insert your code here
+    if (isempty()==1){
+        printf("Queue is empty.\n");
+        return -1;
+    }
+    else{
+        int number =arr[front+1];
+        for (int i = 0;i <rear;i++){
+            arr[i]=arr[i+1];
+        }
+        rear--;
+        return number;
+    }
 }
 /*---Function to display the elements of the queue-------*/
 void display()
