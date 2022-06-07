@@ -9,42 +9,42 @@ int main()
     int i,j,temp;
     
     //insert your code here
-    FILE *fp1;
-    FILE *fp2;
-    fp1 = fopen ("input.txt", "w");
-    if (fp1 == NULL)
-    {
+    FILE *fp1 = fopen ("input.txt", "w");
+    if (fp1 == NULL){
         printf("Error opening the file %s", "input.txt");
         return -1;
     }
-    for (i = 0; i < MAX; i++){
-        fprintf(fp1, "%d\n", arr[i]);
+    else{
+        for (i = 0; i < MAX; i++){
+            fprintf(fp1, "%d\n", arr[i]);
         }
+    }
     
-    for (i=0; i < MAX; i++){
-        temp = i;
-        for (j=i+1; j < MAX; j++){
-            if (arr[j]<arr[temp]){
-                temp=j;
-            }
+    
+    for (i=0; i < MAX-1; i++){
+        j = i + 1;
+        temp = arr[j];
+        while(j>0 && temp<arr[j-1]){
+            arr[j]=arr[j-1];
+            j--;
         }
-        int smallest = arr[temp];
-        arr[temp]=arr[i];
-        arr[i]=smallest;
+        arr[j]=temp;
     }
 
-    fp2 = fopen ("sorted.txt", "w");
-    if (fp2 == NULL)
-    {
+    FILE *fp2 = fopen ("sorted.txt", "w");
+    if (fp2 == NULL){
         printf("Error opening the file %s", "sorted.txt");
         return -1;
     }
-    for (int i = 0; i < MAX; i++){
-        fprintf(fp2, "%d\n", arr[i]);
+    else{
+        for (int i = 0; i < MAX; i++){
+            fprintf(fp2, "%d\n", arr[i]);
         }
+    }
+    
     // close the file fp1
     fclose(fp1);
-    // close the file fp1
+    // close the file fp2
     fclose(fp2);
     
     return 0;
