@@ -1,5 +1,5 @@
-// name: <your name here>
-// email: <your email here>
+// name: Leo Liang
+// email: liang.jiahao@northeastern.edu
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -40,8 +40,34 @@ void mergeIt(
   
 
   // ADD YOUR CODE HERE
-  
-  return;
+  if (data == NULL ){
+    return;
+  }
+  else{
+    int i = leftStart;
+    int j = rightStart;
+    int k = leftStart;
+
+    char temp[LIMIT];
+    while ( i<= leftStop && j<=rightStop) {
+      if (data[i]<=data[j]){
+        temp[k++] = data[i++];
+      }
+      else{
+        temp[k++] = data[j++];
+      }
+    }
+
+    while ( i<= leftStop){
+      temp[k++] = data[i++];
+    }
+    while ( j<= rightStop){
+      temp[k++] = data[j++];
+    }
+    for (k = leftStart;k<=rightStop;k++){
+      data[k]=temp[k];
+    }
+  }
 }
 
 
