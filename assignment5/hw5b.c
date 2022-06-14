@@ -1,5 +1,5 @@
-// name: <your name here>
-// email: <your email here>
+// name: Leo Liang
+// email: liang.jiahao@northeastern.edu
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -37,8 +37,42 @@ char upperChar(char c){
 void quicky(char* data, int left, int right) {
 
   // ADD YOUR CODE HERE
+  if (data == NULL) {
+    return;
+  }
+  else{
+    if (left >= right) {
+      // base case of 1 element
+      return;
+    } 
+    else {
+      int temp = right;
+      char temparr[LIMIT];
+      int i = left;
+      int j = right;
+      int start = left;
 
-  return;
+      while (start<temp){
+        if (upperChar(data[start]) < upperChar(data[temp])){
+          temparr[i++] = data[start++];
+        }
+        else{
+          temparr[j--] = data[start++];
+        }
+      }
+
+      temparr[i] = data[temp];
+
+      for (int k=left; k<=right; k++){
+        data[k]=temparr[k];
+      }
+      quicky(data, left, i -1);
+      quicky(data, i+1, right);
+
+      return;
+    }
+  }
+  
 }
 
 
