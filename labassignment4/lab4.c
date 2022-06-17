@@ -1,4 +1,6 @@
-//enter your name and email here
+// name: Leo Liang
+// email: liang.jiahao@northeastern.edu
+
 #include<stdio.h>
 #include<stdlib.h>
 typedef struct node
@@ -14,16 +16,38 @@ typedef struct list{
 /*-----creating the nodes----------*/
 node_t* newNode(int num)
 {
- 
+ node_t *newNode=(node_t*)malloc(sizeof(node_t));
+ if(newNode==NULL){
+     printf("Memory is not allocated\n");
+     exit(1);
+ }
+newNode->data=num;
+newNode->next=NULL;
+return newNode;
 }
 /*---creating linked list----*/
 List* init_LL(){
+    List* l;
+    l=(List*)malloc(sizeof(List));
+    if(l==NULL){
+     printf("Memory is not allocated\n");
+     exit(1);
+ }
+    l->head=NULL;
     
+    return l;
 }
 
 /*---Insert the nodes at the begining of the list---*/
 void insertFirst(List* l, int data){
-    
+    node_t* temp=newNode(data);
+    if(l->head==NULL){
+        l->head=temp;
+        return;
+    }
+    temp->next=l->head;
+    l->head=temp;
+    return;
 
 }
 
@@ -44,12 +68,24 @@ void display(List* l)
 void reverse(List* l, node_t* ptr)
 {
     
-    
-    
-    
+
 //insert your code here
-    
-    
+    if(l == NULL){
+        return;
+    }
+    else{
+        if (ptr == NULL){
+        return;
+        }
+        if (ptr->next == NULL){
+            l->head = ptr;
+            return;
+        }
+        reverse(l, ptr->next);
+        ptr->next->next=ptr;
+        ptr->next=NULL;
+        return;
+    }  
 }
 
 /*----Free the nodes-----*/
