@@ -1,5 +1,5 @@
-// name: <your name here>
-// email: <your email here>
+// name: Leo Liang
+// email: liang.jiahao@northeastern.edu
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -244,26 +244,85 @@ void freeQueue(queue_t* qp) {
 
 void preorder (tnode_t* np) {
   // INSERT YOUR CODE HERE
-
+  if (np == NULL){
+    return;
+  }
+  else{
+    queue_t* temp=newQueue();
+    enqueue(temp, np);
+    
+    while (!isEmpty(temp)) {
+      printf("%c", dequeue(temp)->data);
+    }
+    preorder(np->left);
+    preorder(np->right);
+    
+    freeQueue(temp);
+  }
   return;
 }
 
 void inorder (tnode_t* np) {
   // INSERT YOUR CODE HERE
-  
+  if (np == NULL){
+    return;
+  }
+  else{
+    queue_t* temp=newQueue();
+    enqueue(temp, np);
+    inorder(np->left);
+    while (!isEmpty(temp)) {
+      printf("%c", dequeue(temp)->data);
+    }
+    
+    inorder(np->right);
+    
+    freeQueue(temp);
+  }
   return;
 }
 
 void postorder (tnode_t* np) {
   // INSERT YOUR CODE HERE
-  
+  if (np == NULL){
+    return;
+  }
+  else{
+    queue_t* temp=newQueue();
+    enqueue(temp, np);
+    postorder(np->left);
+    postorder(np->right);
+    while (!isEmpty(temp)) {
+      printf("%c", dequeue(temp)->data);
+    }
+    freeQueue(temp);
+  }
   return;
 }
 
 
 void breadthFirst (tnode_t* root) {
   // INSERT YOUR CODE HERE
-  
+  if (root == NULL){
+    return;
+  }
+  else{
+    queue_t* temp=newQueue();
+    enqueue(temp, root);
+    
+    while (!isEmpty(temp)) {
+      tnode_t* elem = dequeue(temp);
+      printf("%c", elem->data);
+      if(elem->left != NULL){
+        enqueue(temp,elem->left);
+      }
+      if(elem->right != NULL){
+        enqueue(temp,elem->right);
+      }
+      
+    }
+    freeQueue(temp);
+  }
   return;
 }
 
