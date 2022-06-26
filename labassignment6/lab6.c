@@ -12,12 +12,10 @@ void encrypt(char text[], int key)
     int i = 0;
     while (text[i] != '\0') {
     if (text[i] >= 'A' && text[i]<= 'Z') {
-        char c = (text[i] - 'A' + key ) % 26;
-        text[i] = c + 'A';
+        text[i] = (text[i] - 'A' + key ) % 26 + 'A';
     }
     if (text[i] >= 'a' && text[i]<= 'z') {
-        char c = (text[i] - 'a' + key ) % 26;
-        text[i] = c + 'a';
+        text[i] = (text[i] - 'a' + key ) % 26 + 'a';
     }
     i++;
   }
@@ -31,12 +29,10 @@ void decrypt(char text[],int key)
     int i = 0;
     while (text[i] != '\0') {
     if (text[i] >= 'A' && text[i]<= 'Z') {
-        char c = (text[i] - 'A' - key +26) % 26;
-        text[i] = c + 'A';
+        text[i] = (text[i] - 'A' - key +26) % 26 + 'A';
     }
     if (text[i] >= 'a' && text[i]<= 'z') {
-        char c = (text[i] - 'a' - key +26) % 26;
-        text[i] = c + 'a';
+        text[i] = (text[i] - 'a' - key +26) % 26 + 'a';
     }
     i++;
   }
