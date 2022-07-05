@@ -1,5 +1,5 @@
-// name: <your name here>
-// email: <your email here>
+// name: Leo Liang
+// email: liang.jiahao@northeastern.edu
 
 // format of document is a bunch of data lines beginning with an integer (rank which we ignore)
 // then a ',' followed by a double-quoted string (city name)
@@ -67,7 +67,10 @@ int hash2(char* s) {
   int sumOfS = 0;
 
   //**** YOUR CODE GOES HERE ****
-
+  for (int i = 0; i<strlen(s); i++){
+    sumOfS += (int)s[i];
+  }
+  
   return (sumOfS % HASHSIZE);
 }
 
@@ -76,6 +79,8 @@ int hash3(char* s) {
   long productOfS = 1;
 
   //**** YOUR CODE GOES HERE ****
+
+  productOfS *= (int)s[0] * (int)s[1];
 
   return ((int)(productOfS % HASHSIZE));
 }
@@ -91,7 +96,37 @@ bool addToHashTable(keyvalue_t* t[], int loc, char* k, int v) {
   bool result = true;
 
   //**** YOUR CODE GOES HERE ****
-
+  int len = sizeof(*t) /sizeof(t[0]);
+  int index = 0;
+  keyvalue_t* temp = newKeyValue(k,v);
+  if(t[loc]==NULL){
+    t[loc] = temp;
+    t[loc-1]->next = t[loc];
+    t[loc]->next = t[loc+1];
+  }
+  else{
+    if(t[loc]->next ==NULL){
+      if(t[loc]->key == k){
+        result = false;
+      }
+      else{
+        t[loc]->next =temp;
+      }
+    }
+    else{
+      int len =sizeof(*t[loc]) / sizeof(t[loc][0]);
+      for (int i = 0; i < len; i++){
+        if (t[loc][i].key == k){
+          result = false;
+          break;
+        }
+      }
+      if(result){
+        t[loc][len-1].next = temp;
+      }
+    }
+  }
+  
   return result;
 }
 
