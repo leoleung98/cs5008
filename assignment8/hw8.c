@@ -96,36 +96,27 @@ bool addToHashTable(keyvalue_t* t[], int loc, char* k, int v) {
   bool result = true;
 
   //**** YOUR CODE GOES HERE ****
-  int len = sizeof(*t) /sizeof(t[0]);
-  int index = 0;
+  if (*t == NULL){
+    return false;
+  }
   keyvalue_t* temp = newKeyValue(k,v);
-  if(t[loc]==NULL){
+  if(t[loc] == NULL){
     t[loc] = temp;
-    t[loc-1]->next = t[loc];
-    t[loc]->next = t[loc+1];
-  }
-  else{
-    if(t[loc]->next ==NULL){
-      if(t[loc]->key == k){
+  } 
+  else {
+    keyvalue_t* temp2 = t[loc];
+    while(temp2->next != NULL){
+      if(temp2->key == k){
         result = false;
+        break;
       }
-      else{
-        t[loc]->next =temp;
-      }
+      temp2 = temp2->next;
     }
-    else{
-      int len =sizeof(*t[loc]) / sizeof(t[loc][0]);
-      for (int i = 0; i < len; i++){
-        if (t[loc][i].key == k){
-          result = false;
-          break;
-        }
-      }
-      if(result){
-        t[loc][len-1].next = temp;
-      }
+    if(result == true){
+      temp->next = t[loc];
+      t[loc] = temp;
     }
-  }
+}
   
   return result;
 }
