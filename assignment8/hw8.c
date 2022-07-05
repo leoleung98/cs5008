@@ -96,7 +96,7 @@ bool addToHashTable(keyvalue_t* t[], int loc, char* k, int v) {
   bool result = true;
 
   //**** YOUR CODE GOES HERE ****
-  if (*t == NULL){
+  if (t == NULL){
     return false;
   }
   keyvalue_t* temp = newKeyValue(k,v);
