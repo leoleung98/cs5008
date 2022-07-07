@@ -1,5 +1,5 @@
-/*Enter your name here*/
-/* Enter your email here*/
+// name: Leo Liang
+// email: liang.jiahao@northeastern.edu
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
@@ -34,10 +34,22 @@ scanf("%d",&(temp->priority));
 int pri=temp->priority;
 
 /*---insert your code here----*/
-    
-    
-    
-    
+    if (front == NULL) {
+        return temp;
+    }
+    if (pri >= front->priority) {
+        temp->next = front;
+        return temp;
+    }
+    else{
+       p = front;
+       while (p->next != NULL && pri < p->next->priority) {
+        p = p->next;  
+       }
+       temp->next = p->next;
+       p->next = temp;
+       return front;
+    }  
 }
 
 /* Delete the patient who is at the front*/
@@ -45,7 +57,7 @@ node_t *delete(struct node *front)
 {
     
     /*---insert your code here---*/
-    
+    return front->next;
     
 }
 
