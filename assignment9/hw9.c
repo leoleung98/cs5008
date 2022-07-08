@@ -1,5 +1,5 @@
-// name: <your name here>
-// email: <your email here>
+// name: Leo Liang
+// email: liang.jiahao@northeastern.edu
 
 
 #include <stdio.h>
@@ -229,7 +229,15 @@ int main () {
   while (!isEmpty(q)) {
 
     // INSERT YOUR CODE HERE
-    
+    current = dequeue(q);
+    done[current]=true;
+    printf("NODE: %d\n", current);
+    for (j=0 ; j < sizeof(E[current]) / sizeof(bool); j++){
+      if (E[current][j]==true && done[j] != true){
+        enqueue(q,j);
+        done[j]=true;
+      }
+    }
   }
 
   // print out nodes that are unreachable
