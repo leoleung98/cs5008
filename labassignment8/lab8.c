@@ -70,7 +70,10 @@ void addConnection(Graph* graph, char* person, char* friend){
     int n=numberoflistspresent(graph);
     int p = search(person, graph);//search for the person in the graph p-> position of person in the list
     
-    //insert your code here
+    //insert your code here'
+    if (graph == NULL){
+        return;
+    }
     if (n == 0){
         node* temp1 = createNode(person);
         graph-> adjLists[0] = temp1;
