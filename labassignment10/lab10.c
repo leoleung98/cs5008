@@ -1,5 +1,5 @@
-/* Enter your name here*/
-/* Enter your email here*/
+// name: Leo Liang
+// email: liang.jiahao@northeastern.edu
 
 #include<stdio.h>
 #define MAXN 50       /* largest number of books */
