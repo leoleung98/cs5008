@@ -71,9 +71,16 @@ void partition(int s[], int n, int k)
     
     
     /*Insert your code here*/
-    
-  
-    
+    p[0]=0;
+    for (i=1;i<=n;i++){
+        p[i]=p[i-1]+s[i];
+    }
+    for(i=1; i<=n;i++){
+        m[i][1]=p[i];
+    }
+    for (j=2;j<=k;j++){
+        m[1][j]=p[1];
+    }
     
 /* 2 to k partitions*/
 for (i=2; i<=n; i++)
