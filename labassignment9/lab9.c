@@ -111,7 +111,18 @@ void topologicalOrder(int arr[][MAX], Queue *t, int n)
     
     
     //insert your code here
-    
+    while(!isEmpty(t->front)){
+        delNode = dequeue(t);
+        result[j++] = delNode;
+        for (i = 1; i<=n; i++){
+            if(arr[delNode][i] == 1){
+                indeg[i] -= 1;
+                if (indeg[i] == 0) {
+                    enqueue(t,i);
+                }
+            }
+        }    
+    }
     
     
     printf("topological ordering\n");
